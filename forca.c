@@ -9,51 +9,61 @@ void abertura (){
 
 void chuta (char chutes[26], int* tentativas){
     char chute;
-    printf ("Adivinha uma letra?: ");
+    printf ("Adivinhe uma letra?: ");
     scanf (" %c", &chute);
 
     chutes[(*tentativas)] = chute;
     (*tentativas)++;
 }
 
-int main () {
-    char palavrasecreta [20];
+int jachutou(char letra, char* chutes, int tentativas) {
+	int achou = 0;
+	for(int j = 0; j < tentativas; j++) {
+		if(chutes[j] == letra) {
+			achou = 1;
+			break;
+		}
+	}
 
+	return achou;
+}
+
+void desenhaforca(char palavrasecreta[20], char chutes[26], int tentativas){
+    printf("Voce ja deu %d chutes\n", tentativas);
+    printf("\n");
+
+		for(int i = 0; i < strlen(palavrasecreta); i++) {
+
+			if(jachutou(palavrasecreta[i], chutes, tentativas)) {
+				printf("%c ", palavrasecreta[i]);
+			} else {
+				printf("_ ");
+			}
+		}
+		printf("\n");
+}
+
+void escolhepalavra(char palavrasecreta[20]){
     sprintf (palavrasecreta, "MELANCIA");
 
-    int acertou = 0;
-    int enforcou = 0;
+}
 
-    char chutes [26];
-    int tentativas = 0;
+int main() {
 
-    abertura();
+	char palavrasecreta[20];
+	int acertou = 0;
+	int enforcou = 0;
+	char chutes[26];
+	int tentativas = 0;
 
-    do {
-        for (int i = 0; i < strlen(palavrasecreta); i++){
-            int achou = 0;
-            for (int j = 0; j < tentativas; j++){
-                if (chutes[j] == palavrasecreta[i]){
-                    achou = 1;
-                    break;
-                }
-            }
-            if (achou){
-                 printf("%c ", palavrasecreta[i]);
-            } else {
-                 printf("_ ");
-            }
-           
-        }
-        printf("\n");
+    escolhepalavra(palavrasecreta);
+	abertura();
 
-       chuta(chutes, &tentativas);
+	do {
+		
+        desenhaforca(palavrasecreta, chutes, tentativas);
+		chuta(chutes, &tentativas);
 
-        for (int i = 0; i < strlen(palavrasecreta); i++){
-            if(palavrasecreta[i] == chute){
-                printf("A posicao %d tem essa letra!\n", i);
-                printf("\n");
-           }
-         }
-    } while (!acertou && !enforcou);
+	} while (!acertou && !enforcou);
+
 }

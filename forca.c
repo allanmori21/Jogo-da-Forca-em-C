@@ -7,6 +7,15 @@ void abertura (){
     printf ("*************************\n\n");
 }
 
+void chuta (char chutes[26], int* tentativas){
+    char chute;
+    printf ("Adivinha uma letra?: ");
+    scanf (" %c", &chute);
+
+    chutes[(*tentativas)] = chute;
+    (*tentativas)++;
+}
+
 int main () {
     char palavrasecreta [20];
 
@@ -38,12 +47,7 @@ int main () {
         }
         printf("\n");
 
-        char chute;
-        printf ("Adivinha uma letra?: ");
-        scanf (" %c", &chute);
-
-        chutes[tentativas] = chute;
-        tentativas++;
+       chuta(chutes, &tentativas);
 
         for (int i = 0; i < strlen(palavrasecreta); i++){
             if(palavrasecreta[i] == chute){

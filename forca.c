@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
+void abertura (){
+    printf ("*************************\n");
+    printf ("*     Jogo da Forca     *\n");
+    printf ("*************************\n\n");
+}
+
 int main () {
     char palavrasecreta [20];
 
@@ -11,6 +17,8 @@ int main () {
 
     char chutes [26];
     int tentativas = 0;
+
+    abertura();
 
     do {
         for (int i = 0; i < strlen(palavrasecreta); i++){
@@ -40,6 +48,7 @@ int main () {
         for (int i = 0; i < strlen(palavrasecreta); i++){
             if(palavrasecreta[i] == chute){
                 printf("A posicao %d tem essa letra!\n", i);
+                printf("\n");
            }
          }
     } while (!acertou && !enforcou);

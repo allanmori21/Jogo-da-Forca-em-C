@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "forca.h"
 
-char palavrasecreta[20];
+char palavrasecreta[TAMANHO_PALAVRA];
 char chutes[26];
 int chutesdados = 0;
 
@@ -54,12 +54,12 @@ void desenhaforca() {
 
 void adicionapalavra(){
 	char quer;
-	printf ("Voce desenha adicionar uma nova palavra no jogo? (S/N)");
+	printf ("Voce desenha adicionar uma nova palavra no jogo? (S/N):");
 	scanf (" %c", &quer);
 
 	if (quer == 'S'){
 		char novapalavra[20];
-		printf ("Qual a nova palavra? ");
+		printf ("Qual a nova palavra?: ");
 		scanf ("%s", novapalavra);
 
 		FILE* f;
@@ -148,6 +148,39 @@ int main() {
 		chuta();
 
 	} while (!acertou() && !enforcou());
+
+	if (acertou()){
+		printf("\n Parabens, voce ganhou!\n\n");
+		printf("       ___________         \n");
+        printf("      '._==_==_=_.'        \n");
+        printf("      .-\\:      /-.       \n");
+        printf("     | (|:.     |) |       \n");
+        printf("      '-|:.     |-'        \n");
+        printf("        \\::.    /         \n");
+        printf("         '::. .'           \n");
+        printf("           ) (             \n");
+        printf("         _.' '._           \n");
+        printf("        '-------'        \n\n");
+	} else {
+		printf("\n Puxa, voce foi enforcado!\n");
+		printf("A palavra era **%s**\n\n", palavrasecreta);
+		printf("    _______________         \n");
+        printf("   /               \\       \n"); 
+        printf("  /                 \\      \n");
+        printf("//                   \\/\\  \n");
+        printf("\\|   XXXX     XXXX   | /   \n");
+        printf(" |   XXXX     XXXX   |/     \n");
+        printf(" |   XXX       XXX   |      \n");
+        printf(" |                   |      \n");
+        printf(" \\__      XXX      __/     \n");
+        printf("   |\\     XXX     /|       \n");
+        printf("   | |           | |        \n");
+        printf("   | I I I I I I I |        \n");
+        printf("   |  I I I I I I  |        \n");
+        printf("   \\_             _/       \n");
+        printf("     \\_         _/         \n");
+        printf("       \\_______/           \n");
+	}
 
 	adicionapalavra();
 
